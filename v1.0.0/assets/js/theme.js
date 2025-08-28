@@ -124,35 +124,6 @@ var getOffset = function getOffset(el) {
     left: rect.left + scrollLeft
   };
 };
-var isScrolledIntoView = function isScrolledIntoView(el) {
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
-  while (el.offsetParent) {
-    // eslint-disable-next-line no-param-reassign
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-  return {
-    all: top >= window.pageYOffset && left >= window.pageXOffset && top + height <= window.pageYOffset + window.innerHeight && left + width <= window.pageXOffset + window.innerWidth,
-    partial: top < window.pageYOffset + window.innerHeight && left < window.pageXOffset + window.innerWidth && top + height > window.pageYOffset && left + width > window.pageXOffset
-  };
-};
-var isElementIntoView = function isElementIntoView(el) {
-  var position = el.getBoundingClientRect();
-  // checking whether fully visible
-  if (position.top >= 0 && position.bottom <= window.innerHeight) {
-    return true;
-  }
-
-  // checking for partial visibility
-  if (position.top < window.innerHeight && position.bottom >= 0) {
-    return true;
-  }
-  return null;
-};
 var getBreakpoint = function getBreakpoint(el) {
   var classes = el && el.classList.value;
   var breakpoint;
@@ -243,7 +214,6 @@ var utils = {
   getColors: getColors,
   getGrays: getGrays,
   getOffset: getOffset,
-  isScrolledIntoView: isScrolledIntoView,
   getBreakpoint: getBreakpoint,
   setCookie: setCookie,
   getCookie: getCookie,
@@ -253,7 +223,6 @@ var utils = {
   getDates: getDates,
   getRandomNumber: getRandomNumber,
   removeClass: removeClass,
-  isElementIntoView: isElementIntoView,
   getCurrentScreenBreakpoint: getCurrentScreenBreakpoint,
   isRTL: isRTL
 };
@@ -364,138 +333,7 @@ var DomNode = /*#__PURE__*/function () {
   }]);
   return DomNode;
 }();
-/*eslint-disable*/
-/*-----------------------------------------------
-|   Top navigation opacity on scroll
------------------------------------------------*/
-var navbarInit = function navbarInit() {
-  var Selector = {
-    NAV_ITEM: '.nav-item',
-    NAVBAR: '.navbar',
-    DROPDOWN: '.dropdown'
-  };
-  utils.resize(function () {
-    var navElements = document.querySelectorAll('.nav-item');
-    navElements.forEach(function (item) {
-      item.removeAttribute('style');
-    });
-    var dropElements = document.querySelectorAll('.category-list');
-    dropElements.forEach(function (item) {
-      item.innerHTML = ' ';
-    });
-    navbar();
-  });
-  var navbar = function navbar() {
-    var totalWidth = 0;
-    var nav = document.querySelector(Selector.NAVBAR).clientWidth;
-    var dropdown = document.querySelector('.dropdown').clientWidth;
-
-    // let navbarNav = document.querySelector('.navbar-nav').clientWidth;
-
-    var navbarWidth = nav - dropdown;
-    var elements = document.querySelectorAll('.nav-item');
-    elements.forEach(function (item) {
-      var itemWidth = item.clientWidth;
-      totalWidth = totalWidth + itemWidth;
-      if (totalWidth > navbarWidth) {
-        if (!item.classList.contains('dropdown')) {
-          item.style.display = 'none';
-          var link = item.firstChild;
-          var linkItem = link.cloneNode(true);
-          document.querySelector('.category-list').appendChild(linkItem);
-        }
-      }
-    });
-    var dropdownMenu = document.querySelectorAll('.dropdown-menu .nav-link');
-    dropdownMenu.forEach(function (item) {
-      item.classList.remove('nav-link');
-      item.classList.add('dropdown-item');
-    });
-  };
-  window.addEventListener('load', function (event) {
-    navbar();
-  });
-  navbar();
-
-  // Toggle bg class on window resize
-
-  var backToToP = document.querySelector('.back-to-top');
-  var navbarEl = document.querySelector('.navbar');
-  var myScrollFunc = function myScrollFunc() {
-    var y = window.scrollY;
-    if (y >= 540) {
-      backToToP.style.opacity = '1';
-      navbarEl.classList.add('sticky-top');
-      navbarEl.classList.add('bg-white');
-    } else {
-      backToToP.style.opacity = '0';
-      navbarEl.classList.remove('bg-light');
-    }
-  };
-  var navbarLink = document.querySelectorAll('.nav-link');
-  document.addEventListener('click', function (e) {
-    for (var x = 0; x < navbarLink.length; x++) {
-      navbarLink[x].classList.remove('active');
-    }
-    e.target.closest('li').classList.add('active');
-  });
-  window.addEventListener('scroll', myScrollFunc);
-};
-
-/*eslint-disable*/
-
-/*-----------------------------------------------
-|                     Isotope
------------------------------------------------*/
-
-var isotopeFilter = function isotopeFilter() {
-  window.addEventListener('load', function (event) {
-    var iso = new Isotope('.grid', {
-      itemSelector: '.item',
-      masonry: {
-        // use outer width of grid-sizer for columnWidth
-        columnWidth: '.item'
-      }
-    });
-    var filtersElem = document.querySelectorAll('[data-bs-nav]');
-    filtersElem.forEach(function (element) {
-      document.addEventListener('click', function (event) {
-        console.log(event.target.id);
-        if (event.target.id != 'navbarDropdown') {
-          var filterValue = event.target.getAttribute('data-filter');
-          iso.arrange({
-            filter: filterValue
-          });
-        }
-      });
-    });
-  });
-};
-
-/* -------------------------------------------------------------------------- */
-/*                                Scroll To Top                               */
-/* -------------------------------------------------------------------------- */
-var scrollToTop = function scrollToTop() {
-  document.querySelectorAll('[data-anchor] > a, [data-scroll-to]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var _utils$getData;
-      e.preventDefault();
-      var el = e.target;
-      var id = utils.getData(el, 'scroll-to') || el.getAttribute('href');
-      window.scroll({
-        top: (_utils$getData = utils.getData(el, 'offset-top')) !== null && _utils$getData !== void 0 ? _utils$getData : utils.getOffset(document.querySelector(id)).top - 100,
-        left: 0,
-        behavior: 'smooth'
-      });
-      window.location.hash = id;
-    });
-  });
-};
-
 /* -------------------------------------------------------------------------- */
 /*                            Theme Initialization                            */
 /* -------------------------------------------------------------------------- */
-
 docReady(detectorInit);
-docReady(scrollToTop);
-docReady(isotopeFilter);

@@ -1,0 +1,17 @@
+extends layouts/LayoutTheme
+include mixins/common/Footer
+include mixins/common/ItemCard
+include mixins/home/landing/HeroHeader
+include mixins/home/landing/Item
+
+
+
+
+prepend scripts
+
+append content
+
+  +HeroHeader
+  +Section("container").py-8.py-md-9.py-xl-10
+    +Item
+  +Footer

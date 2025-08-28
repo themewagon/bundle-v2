@@ -1,0 +1,12 @@
+@mixin input-feedback-variant($color){
+  .form-control{
+    border-color: $color;
+
+    &:focus{
+      box-shadow: none;
+    }
+  }
+  .form-control-feedback{
+    color: $color;
+  }
+}

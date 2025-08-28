@@ -1,0 +1,110 @@
+/* -------------------------------------------------------------------------- */
+/*                                creative-bundle Button                               */
+/* -------------------------------------------------------------------------- */
+@mixin creative-bundle-button-variant($color) {
+  &, &.show {
+    color: var(--#{$prefix}btn-creative-bundle-#{$color}-color);
+    background-color: var(--#{$prefix}btn-creative-bundle-background);
+    border-color: var(--#{$prefix}btn-creative-bundle-background);
+    box-shadow: var(--#{$prefix}btn-creative-bundle-box-shadow);
+
+  }
+
+  @include hover-focus {
+    color: var(--#{$prefix}btn-creative-bundle-#{$color}-hover-color);
+    background-color: var(--#{$prefix}btn-creative-bundle-background);
+    border-color: var(--#{$prefix}btn-creative-bundle-background);
+
+    &:not(.disabled):not(:disabled) {
+      color: var(--#{$prefix}btn-creative-bundle-#{$color}-hover-color);
+      box-shadow: var(--#{$prefix}btn-creative-bundle-hover-box-shadow);
+    }
+  }
+  &:active {
+    box-shadow: none !important;
+    color: var(--#{$prefix}btn-creative-bundle-#{$color}-active-color);
+  }
+
+  .btn-check:checked+&,
+  :not(.btn-check)+&:active,
+  &:first-child:active,
+  &.active {
+    color: var(--#{$prefix}btn-creative-bundle-#{$color}-color);
+    background-color: var(--#{$prefix}btn-creative-bundle-#{$color}-active-background);
+    // Remove CSS gradients if they're enabled
+    // background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}btn-creative-bundle-background);
+  }
+  &:disabled,
+  &.disabled {
+    color: var(--#{$prefix}btn-disabled-color);
+    background-color: var(--#{$prefix}btn-creative-bundle-background);
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    box-shadow: var(--#{$prefix}btn-creative-bundle-box-shadow) !important;
+  }
+}
+@mixin button-outline-variant($color) {
+    color: $color;
+    background-image: none;
+    background-color: transparent;
+    border-color: $color;
+    &.btn-icon {
+        span {
+            border-color: $color;
+            background-color: transparent;
+            transition: background-color 0.2s ease-in-out;
+        }
+        &:hover, &:focus, &:active, &:active:focus {
+            span {
+                background-color: rgba(0,0,0,0.1);
+                border-color: transparent;
+            }
+        }
+    }//end .btn-icon
+
+
+    &:hover {
+        color: $white;
+        background-color: $color;
+        border-color: $color;
+    }
+    &:focus, &.focus {
+        color: $white;
+        background-color: $color;
+        border-color: $color;
+    }
+    &:active, &.active, .open > &.dropdown-toggle {
+        color: $white;
+        background-color: $color;
+        border-color: $color;
+        &:hover, &:focus, &.focus {
+            color: $white;
+            background-color: darken($color,17%);
+            border-color: darken($color,25%);
+        }
+    }
+    &.active{
+        background-color: darken($color,17%);
+        border-color: darken($color,25%);
+    }
+    &.disabled, &:disabled {
+        &:focus, &.focus { border-color: lighten($color,20%); }
+        &:hover { border-color: lighten($color,20%); }
+    }
+} //end outline varient
+
+
+//brand icon
+
+@mixin brand-icon-variant($color) {
+  color: $white;
+  background-color: $color;
+  border-color: $color;
+  @include hover-focus {
+    color: $white;
+    background-color: shade-color($color, 10%);
+    border-color: shade-color($color, 12%);
+  }
+}
+

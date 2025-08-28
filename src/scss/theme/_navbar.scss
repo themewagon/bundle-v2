@@ -1,0 +1,73 @@
+/* -------------------------------------------------------------------------- */
+/*                                   Navbar                                   */
+/* -------------------------------------------------------------------------- */
+
+:root{
+  --#{$prefix}top-nav-height: 4.3125rem;
+}
+
+.navbar-creative-bundle {
+  &.navbar{
+    .navbar-nav{
+      .nav-item:first-child{
+        .nav-link{
+          padding-left: 0rem;
+        }
+      }
+    }
+    .nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      outline: none;
+      line-height: $line-height-xl;
+      padding: .4rem 1.2rem;
+      font-size: var(--#{$prefix}font-size-base);
+      font-weight: $font-weight-semi-bold;
+      text-transform: capitalize;
+      
+      .dropdown-toggle-icon{
+        font-size: 10px;
+        @include media-breakpoint-up(lg){
+          position:absolute;
+          right: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      @include media-breakpoint-down(lg){
+        padding-left: 0;
+        border: 1px solid transparent;
+      }
+    }
+    // Initial hover color for all navbar dropdown item
+    .dropdown-item {
+      color: rgba($gray-100, .6);
+      line-height: $line-height-xl;
+      border: 1px solid transparent;
+      padding: .4rem 1.2rem;
+      font-size: var(--#{$prefix}font-size-base);
+      font-weight: $font-weight-semi-bold;
+      text-transform: capitalize;
+      @include hover-focus {
+        background-color: var(--#{$prefix}gray-1100);
+        color:  var(--#{$prefix}gray-100)!important;
+      }
+      &.active{
+        color: var(--#{$prefix}gray-100);
+        background-color: var(--#{$prefix}gray-1100);
+      }
+    }
+  }
+  
+}
+.navbar-brand {
+  font-family: var(--#{$prefix}font-sans-serif);
+  padding-right: 1rem;
+  line-height: 1.5;
+  letter-spacing: .01em;
+  [dir='rtl'] & {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}

@@ -1,0 +1,147 @@
+// gray-color-variables
+$white: #fff !default;
+$gray-100: #FFFEFE  !default;
+$gray-200: #F5F5F5 !default;
+$gray-300: #EEEEEE !default;
+$gray-400: #E0E0E0 !default;
+$gray-500: #BDBDBD !default;
+$gray-600:  #F0F0F0!default;
+$gray-700:  #2F281E !default; //made changes here
+$gray-800: #979797 !default; //made changes here
+$gray-900: #6e6d7a !default;
+$gray-1000: #454745 !default;
+$gray-1100: #0c151a !default;
+$gray-1200: #0E0F0C !default;
+$black: #000 !default;
+
+// gray-colors-map
+$grays: (
+  '100': $gray-100,
+  '200': $gray-200,
+  '300': $gray-300,
+  '400': $gray-400,
+  '500': $gray-500,
+  '600': $gray-600,
+  '700': $gray-700,
+  '800': $gray-800,
+  '900': $gray-900,
+  '1000': $gray-1000,
+  '1100': $gray-1100,
+  '1200' : $gray-1200,
+) !default;
+
+// color-variables
+$blue: #747DEF  !default;
+$indigo: #6237FF !default;
+$purple:  #A1B0FC!default;
+$pink: #D42DA3 !default;
+$red: #DF6951 !default;
+$orange: #DF6951 !default;
+$yellow:#FF9900 !default; //made changes here
+$green: #002F35!default;
+$teal: #567592 !default;
+$cyan: #03E0ED !default;
+$light: #F0F4F9 !default;
+$dark-blue:  #2F281E!default; //changed to #2F281E
+$light-green: #9EE970 !default;
+$dark-grey:#544837!default;
+$navy-blue: #B9B9B9!default;
+
+// theme-color-variables
+$primary: $green !default;
+$secondary: $gray-900  !default;
+$success: $light-green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $navy-blue !default;
+$dark: $gray-800 !default;
+
+// theme-color-map
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+) !default;
+
+// brand-color-variables
+$linkedin: #0077b5 !default;
+$facebook: #3b5998 !default;
+$twitter: #1da1f2 !default;
+$google-plus: #db4437 !default;
+$github: #24292e !default;
+$youtube: #ff0001 !default;
+$instagram: conic-gradient(from 180deg at 50% 50%, #B8D2F1 0deg, #F289AA 60deg, #C68BF0 106.09deg, #D164DA 153.75deg, #C963E8 221.25deg, #BFC2E8 258.75deg, #FFC999 288.75deg, #D0D8C9 315deg, #BAD0F1 334.13deg, #CED8CB 358.97deg, rgba(255, 255, 255, 0) 360deg);
+
+// brand-color-map
+$brand-colors:(
+  'facebook': $facebook,
+  'google-plus': $google-plus,
+  'twitter': $twitter,
+  'linkedin': $linkedin,
+  'youtube': $youtube,
+  'github': $github,
+) !default;
+
+// icon-circle-color-map
+$icon-circle-colors: (
+  'primary': $primary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+) !default;
+
+$button-colors: map-remove($theme-colors, 'light', 'dark') !default;
+
+$theme-hover-colors: (
+  'primary': darken($primary, 10%),   // $green: #002F35
+  'secondary': darken($secondary, 10%), // $gray-900: #6e6d7a
+  'success': #8AD85D,   // $light-green: #9EE970
+  'info': darken($info, 10%),         // $cyan: #03E0ED
+  'warning': darken($warning, 10%),   // $yellow: #FF9900
+  'danger': darken($danger, 10%),     // $red: #DF6951
+  'light': darken($light, 10%),       // $navy-blue: #B9B9B9
+  'dark': darken($dark, 10%),         // $gray-800: #979797
+);
+
+// scss-docs-start theme-text-variables
+$primary-text-emphasis: shade-color($primary, 25%) !default;
+$secondary-text-emphasis: shade-color($secondary, 20%) !default;
+$success-text-emphasis: shade-color($success, 35%) !default;
+$info-text-emphasis: shade-color($info, 35%) !default;
+$warning-text-emphasis: shade-color($warning, 30%) !default;
+$danger-text-emphasis: shade-color($danger, 20%) !default;
+$light-text-emphasis: shade-color($light, 60%) !default;
+$dark-text-emphasis: tint-color($dark, 55%) !default;
+// scss-docs-end theme-text-variables
+
+// scss-docs-start theme-bg-subtle-variables
+$primary-bg-subtle: tint-color($primary, 82%) !default;
+$secondary-bg-subtle: tint-color($secondary, 82%) !default;
+$success-bg-subtle: tint-color($success, 85%) !default;
+$info-bg-subtle: tint-color($info, 82%) !default;
+$warning-bg-subtle: tint-color($warning, 80%) !default;
+$danger-bg-subtle: tint-color($danger, 82%) !default;
+$light-bg-subtle: tint-color($light, 70%) !default;
+$dark-bg-subtle: shade-color($dark, 30%) !default;
+// scss-docs-end theme-bg-subtle-variables
+
+$body-color: $gray-1000 !default;
+$body-bg: $white !default;
+
+$body-secondary-color: $primary !default;
+$body-secondary-bg: $gray-300 !default;
+
+$body-tertiary-color: $gray-600 !default;
+$body-tertiary-bg: $gray-100 !default;
+
+$body-quaternary-bg: $white !default;
+
+$body-emphasis-color: $black !default;
+$body-emphasis-bg: $white !default;
+

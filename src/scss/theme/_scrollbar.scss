@@ -1,0 +1,35 @@
+/*-----------------------------------------------
+|   Scrollbar style for windows
+-----------------------------------------------*/
+.scrollbar {
+  @include chrome-scrollbar;
+  &.scrollbar-none-xl{
+    @include media-breakpoint-up(xl){
+      overflow: initial;
+    }
+  }
+}
+
+.navbar-vibrant {
+  .scrollbar {
+    @include chrome-scrollbar(rgba($white, 0.4));
+  }
+}
+
+.firefox {
+  .scrollbar {
+    @include firefox-scrollbar;
+    &.scrollbar-none-xl{
+      @include media-breakpoint-up(xl){
+        overflow: initial !important;
+      }
+    }
+  }
+
+  .navbar-vibrant {
+    .scrollbar {
+      @include firefox-scrollbar(rgba($white, 0.4));
+    }
+  }
+}
+

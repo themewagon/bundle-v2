@@ -1,0 +1,12 @@
+mixin ItemCard(config)
+  a(href=config.link target="_blank").text-decoration
+    .card.h-100.card-showcase
+      img.card-img-top(src=`${CWD}assets/img/thumbnail/${config.thumb}` alt="thumb-img")
+      .card-body
+        .row.justify-content-between.g-0.gap-3.gap-lg-15.h-100.flex-column.flex-lg-row
+          .col
+            h5.fs-9.fw-semi-bold.text-capitalize=config.title
+            p.mb-0=config.subtitle 
+          .col-12.col-lg-auto
+            button.btn.btn-success.px-2.py-1.py-md-2.px-md-4.rounded-6.rounded-md-1 Preview
+

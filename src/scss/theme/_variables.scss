@@ -1,0 +1,520 @@
+/* prettier-ignore */
+@use 'sass:math';
+@use "sass:string";
+$prefix: 'creative-bundle-';
+
+
+$enable-rfs:                  true !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+// scss-docs-start container-max-widths
+
+// scss-docs-start container-max-widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+// scss-docs-end container-max-widths
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+// scss-docs-end grid-breakpoints
+
+// scss-docs-start spacer-variables-maps
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.625, // 10px
+  2: $spacer * 0.875, // 14px
+  3: $spacer * 1,
+  4: $spacer * 1.125, //18px
+  5: $spacer * 1.375, //22
+  6: $spacer * 2.875, //46
+  7: $spacer * 3,
+  8: $spacer * 3.5,
+  9: $spacer * 4,
+  10: $spacer * 4.5,
+  11: $spacer * 5,
+  12: $spacer * 6,
+  13: $spacer * 3.188, //51
+  14: $spacer * 9.53125,
+  15: $spacer * 1.5
+) !default;
+// scss-docs-end spacer-variables-maps
+
+// Customize the light and dark text colors for use in our color contrast function.
+$color-contrast-dark: $gray-800 !default;
+
+// Min contrast ratio
+$min-contrast-ratio: 2 !default;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$grid-gutter-width: 3rem !default;
+
+// Border
+// 
+// Define border radius styles and more.
+$border-color: $navy-blue !default;
+$border-width: 1px !default;
+
+// scss-docs-start border-styles
+$border-styles : (
+  dotted: 'dotted !important',
+  dashed: 'dashed !important',
+  none: 'none !important',
+  hidden: 'hidden !important',
+) !default;
+// scss-docs-end border-styles
+
+$disabled-border: transparent !default;
+
+// scss-docs-start border-radius-variables
+
+$border-radiuses: (
+  null: var(--#{$prefix}border-radius),
+  0: 0,
+  1: var(--#{$prefix}border-radius-sm),
+  2: var(--#{$prefix}border-radius),
+  3: var(--#{$prefix}border-radius-lg),
+  4: var(--#{$prefix}border-radius-xl),
+  5: var(--#{$prefix}border-radius-xxl),
+  circle: 50%,
+  pill: var(--#{$prefix}border-radius-pill)
+) !default;
+// scss-docs-end border-radius-variables
+$border-radius:               1rem !default;
+$border-radius-sm:            0.5rem !default;
+$border-radius-lg:            2.25rem !default;
+$border-radius-xs:            1rem !default;
+$border-radius-xxl:           2rem !default;
+$border-radius-pill:          10rem !default;
+// Opacity
+// 
+// scss-docs-start opacity-map
+$opacities : (
+  0: 0,
+  25: 0.25,
+  50: 0.5,
+  75: 0.75,
+  85: 0.85,
+  100: 1,
+) !default;
+// scss-docs-end opacity-map
+
+// Position
+//
+// Define the edge positioning anchors of the position utilities.
+
+// scss-docs-start position-map
+$positions : (
+  static,
+  absolute,
+  relative,
+  fixed,
+  sticky,
+) !default;
+// scss-docs-end position-map
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-negative-margins: true !default;
+$enable-dark-mode: true !default;
+
+$component-active-bg: $primary !default;
+
+// scss-docs-start box-shadow-variables
+$box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08) !default;
+$box-shadow-sm:  0 .125rem .25rem rgba($black, .075) !default;
+$box-shadow-lg: 0 1rem 4rem rgba($black, 0.175) !default;
+$box-shadow-inset: inset 0 1px 2px rgba($black, .075) !default;
+// scss-docs-end box-shadow-variables
+
+// Links
+//
+// Style anchor elements.
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+$link-shade-percentage: 20% !default;
+
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+// scss-docs-start font-variables
+$font-family-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol' !default;
+$font-family-cursive: 'Volkhov', 'DM Serif Display', cursive !default;
+
+$font-family-monospace: 'SFMono-Regular', Menlo, Monaco, Consolas,
+  'Liberation Mono', 'Courier New', monospace !default;
+
+$font-family-base: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol' !default;
+
+$font-family-bebas: 'Bebas Neue', sans-serif !default;
+
+$type-scale: 1.5 !default;
+$font-size-base: 1rem !default;
+
+$font-sizes: () !default;
+$font-sizes: map-merge((
+  '-2': math.div(1, math.pow($type-scale, 2)) * $font-size-base,
+  '-1': math.div(1, $type-scale) * $font-size-base,
+  0: $font-size-base, // 16px
+  1: pow($type-scale, 1) * $font-size-base, // 24px approx
+  2: pow($type-scale, 2) * $font-size-base, // 36 px
+  3: pow($type-scale, 3) * $font-size-base, // 54
+  4: pow($type-scale, 4) * $font-size-base, // 81
+  5: pow($type-scale, 5) * $font-size-base, // 28.84px
+  6: pow($type-scale, 6) * $font-size-base, // 32.06px ≈ 32
+  7: pow($type-scale, 7) * $font-size-base, // 36px exact
+  8: pow($type-scale, 8) * $font-size-base,
+  9: 1.375 * $font-size-base
+), $font-sizes);
+
+
+$font-size-sm: $font-size-base * 0.875 !default;
+$font-size-lg: $font-size-base * 1.2 !default;
+
+$font-weight-thin: 100 !default;
+$font-weight-lighter: 200 !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semi-bold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: 800 !default;
+$font-weight-black: 900 !default;
+
+$font-weights : (
+  thin: $font-weight-thin,
+  lighter: $font-weight-lighter,
+  light: $font-weight-light,
+  normal: $font-weight-normal,
+  medium: $font-weight-medium,
+  semi-bold: $font-weight-semi-bold,
+  bold: $font-weight-bold,
+  bolder: $font-weight-bolder,
+  black: $font-weight-black
+) !default;
+
+$h1-font-size: map_get($font-sizes, 5) !default;
+$h2-font-size: map_get($font-sizes, 4) !default;
+$h3-font-size: map_get($font-sizes, 3) !default;
+$h4-font-size: map_get($font-sizes, 2) !default;
+$h5-font-size: map_get($font-sizes, 1) !default;
+$h6-font-size: map_get($font-sizes, '-1') !default;
+
+$headings-font-family: var(--#{$prefix}font-base) !default;
+$headings-font-weight: $font-weight-semi-bold !default;
+$headings-color: var(--#{$prefix}gray-1200) !default;
+$headings-line-height: 1 !default;
+$headings-margin-bottom: 2px !default;
+
+// scss-docs-end font-variables
+
+// scss-docs-start display-headings
+$display-font-sizes: (
+  1: map_get($font-sizes, 8),
+  2: map_get($font-sizes, 7),
+  3: map_get($font-sizes, 6),
+  4: map_get($font-sizes, 5),
+  5: map_get($font-sizes, 4),
+  6: map_get($font-sizes, 3),
+) !default;
+
+$display-font-weight: $font-weight-black !default;
+$display-line-height: 1 !default;
+// scss-docs-end display-headings
+
+// scss-docs-start type-variables
+$lead-font-size: $font-size-lg !default;
+$lead-font-weight: $font-weight-normal !default;
+
+$line-height-base:            1.45 !default;
+$line-height-sm:              1 !default;
+$line-height-lg:              1.3 !default;
+$line-height-xl:              1.5 !default;
+$line-height-xxl:             2 !default;
+
+$small-font-size: 75% !default;
+
+$blockquote-font-size: $font-size-lg !default;
+
+$hr-color: var(--#{$prefix}border-color) !default;
+$hr-opacity: var(--#{$prefix}hr-opacity) !default;
+// scss-docs-end type-variables
+
+// link 
+$link-color:$gray-1000 !default;
+$link-decoration: underline !default;
+$link-hover-decoration: none !default;
+$link-hover-color : $primary;
+$link-hover-decoration: underline;
+
+
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+// scss-docs-start btn-creative-bundle-variables
+$btn-creative-bundle-box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba($black, 0.07), 0 1px 2px 0 rgba($black, 0.08) !default;
+$btn-creative-bundle-hover-box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.1), 0 3px 9px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba($black, 0.08), 0 1px 2px 0 rgba($black, 0.08) !default;
+// scss-docs-end btn-creative-bundle-variables
+$btn-box-shadow: none !default;
+$btn-hover-color: $white !default;
+// scss-docs-start input-btn-variables
+$input-btn-padding-y: 0.8rem !default;
+$input-btn-padding-x: 1.375rem !default;
+$input-btn-font-size:  map-get($font-sizes, 0) !default;
+$input-btn-line-height: 0.625 !default;
+
+$input-btn-padding-y-sm: 0.5rem !default;
+$input-btn-padding-x-sm: 0.875rem !default;
+
+$input-btn-padding-y-lg: 1rem !default;
+$input-btn-padding-x-lg: 3rem !default;
+$input-btn-font-size-lg: map-get($font-sizes, 0) !default;
+$btn-border-radius:     var(--#{$prefix}border-radius-sm) !default;
+$btn-border-radius-lg: var(--#{$prefix}border-radius-sm) !default;
+
+$btn-hover-bg-shade-amount:       40% !default;
+
+$input-placeholder-color: #636c72 !default;
+$input-plaintext-color: #464a4c !default;
+$input-color : #464a4c !default;
+// scss-docs-end input-btn-variables
+
+// scss-docs-start btn-variables
+$btn-font-family: $font-family-base;
+$btn-font-weight: $font-weight-semi-bold !default;
+$btn-focus-width: 0 !default;
+$btn-disabled-opacity: .50 !default;
+
+// scss-docs-end btn-variables
+
+
+// Forms
+// 
+// scss-docs-start form-input-variables
+$input-padding-y-sm: 0.4rem !default;
+$input-padding-x-sm: 0.4rem !default;
+$input-padding-y-lg: 1.2rem !default;
+$input-padding-x-lg: 1.2rem !default;
+$input-font-size-lg: 77rem !default;
+$input-font-size: $font-size-base !default;
+$input-bg: var(--#{$prefix}quaternary-bg) !default;
+$input-disabled-bg: var(--#{$prefix}gray-200) !default;
+$input-color: var(--#{$prefix}gray-900) !default;
+$input-border-color: var(--#{$prefix}gray-300) !default;
+$input-line-height: $line-height-xl;
+
+$input-focus-border-color: var(--#{$prefix}input-focus-border-color-global) !default;
+
+$input-placeholder-color: var(--#{$prefix}input-placeholder-color-global) !default;
+
+$input-group-addon-bg: var(--#{$prefix}gray-200) !default;
+// scss-docs-end form-input-variables
+
+// scss-docs-start form-text-variables
+$form-text-color: $gray-500 !default;
+// scss-docs-end form-text-variables
+
+// scss-docs-start form-label-variables
+$form-label-font-size: map_get($font-sizes, 10) !default;
+$form-label-font-weight: $font-weight-semi-bold !default;
+$form-label-margin-bottom: map-get($spacers, 2) !default;
+// scss-docs-end form-label-variables
+
+// Z-index master list
+// 
+// scss-docs-start zindex-stack
+$zindex-sticky: 1015 !default;
+// scss-docs-end zindex-stack
+
+
+// Navbar
+
+// scss-docs-start navbar-variables
+$navbar-padding-y: map_get($spacers, 2) !default;
+$navbar-padding-x: 0 !default;
+
+$top-nav-height: var(--#{$prefix}top-nav-height) !default;
+$standard-nav-height: 3.5625rem !default;
+
+$nav-link-padding-y:                .8rem !default;
+$navbar-nav-link-padding-x:         1.2rem !default;
+$nav-link-font-size: map-get($font-sizes, 10) !default;
+
+$navbar-brand-font-size: map_get($font-sizes, 6) !default;
+$navbar-brand-font-weight: $font-weight-semi-bold !default;
+$navbar-brand-padding-y: .3125rem !default;
+$navbar-brand-margin-end: 1rem !default;
+$navbar-light-brand-color: $gray-100 !default;
+$navbar-light-color: rgba($white, 0.8) !default;
+$navbar-light-hover-color: $white !default;
+$navbar-light-active-color: $gray-100 !default;
+$navbar-light-disabled-color: #{rgba(var(--#{$prefix}emphasis-color-rgb), .3)} !default;
+$navbar-light-toggler-border-color: #{rgba(var(--#{$prefix}emphasis-color-rgb), .1)} !default;
+
+// scss-docs-end navbar-variables
+
+
+// scss-docs-end nav-variables
+
+
+
+
+
+// Card scss
+
+$card-inner-border-radius : $spacer !default;
+$card-spacer-x: map-get($spacers, 4) !default;
+$card-spacer-y: map-get($spacers, 4) !default;
+
+// Modals
+// 
+// scss-docs-start modal-variables
+$modal-content-border-radius: $border-radius-lg !default;
+$modal-content-bg: var(--#{$prefix}emphasis-bg) !default;
+// scss-docs-end modal-variables
+
+
+// List group
+// 
+// scss-docs-start list-group-variables
+$list-group-color: var(--#{$prefix}gray-800) !default;
+$list-group-bg: var(--#{$prefix}list-group-bg-global) !default;
+$list-group-border-color: var(--#{$prefix}border-color) !default;
+
+$list-group-action-hover-color: var(--#{$prefix}gray-700) !default;
+$list-group-hover-bg: var(--#{$prefix}body-bg) !default;
+
+$list-group-disabled-color: var(--#{$prefix}gray-600) !default;
+$list-group-disabled-bg: var(--#{$prefix}card-cap-bg) !default;
+
+$list-group-action-active-bg: var(--#{$prefix}gray-200) !default;
+// scss-docs-end list-group-variables
+
+
+// Image thumbnails
+// 
+// scss-docs-start thumbnail-variables
+$thumbnail-bg: var(--#{$prefix}thumbnail-bg-global) !default;
+$thumbnail-border-width: 1px !default;
+$thumbnail-border-color: #ddd !default;
+$thumbnail-box-shadow:  none !default;
+// scss-docs-end thumbnail-variables
+
+
+// Figures
+
+// scss-docs-start figure-variables
+$figure-caption-color: var(--#{$prefix}gray-600) !default;
+// scss-docs-end figure-variables
+
+
+
+// Carousel
+// 
+// scss-docs-start carousel-variables
+$carousel-transition-duration: 0.8s !default;
+// scss-docs-end carousel-variables
+
+
+// scss-docs-start close-variables
+$btn-close-bg:               url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNS4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjQgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTM0Mi42IDE1MC42YzEyLjUtMTIuNSAxMi41LTMyLjggMC00NS4zcy0zMi44LTEyLjUtNDUuMyAwTDE5MiAyMTAuNyA4Ni42IDEwNS40Yy0xMi41LTEyLjUtMzIuOC0xMi41LTQ1LjMgMHMtMTIuNSAzMi44IDAgNDUuM0wxNDYuNyAyNTYgNDEuNCAzNjEuNGMtMTIuNSAxMi41LTEyLjUgMzIuOCAwIDQ1LjNzMzIuOCAxMi41IDQ1LjMgMEwxOTIgMzAxLjMgMjk3LjQgNDA2LjZjMTIuNSAxMi41IDMyLjggMTIuNSA0NS4zIDBzMTIuNS0zMi44IDAtNDUuM0wyMzcuMyAyNTYgMzQyLjYgMTUwLjZ6Ii8+PC9zdmc+") !default;
+
+// scss-docs-end close-variables
+
+
+// Viewport Heights & Widths
+// 
+// scss-docs-start viewport-heights-map
+$viewport-heights: (
+  25: 25vh,
+  50: 50vh,
+  75: 75vh,
+  100: 100vh,
+) !default;
+// scss-docs-end viewport-heights-map
+
+// scss-docs-start viewport-widths-map
+$viewport-widths: (
+  25: 25vw,
+  50: 50vw,
+  75: 75vw,
+  100: 100vw,
+) !default;
+// scss-docs-end viewport-widths-map
+
+// scss-docs-start sizes-map
+$sizes: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+  auto: auto,
+) !default;
+// scss-docs-end sizes-map
+
+
+
+
+// Footer
+// 
+// scss-docs-start footer-variables
+$footer-height: 3.9875rem !default;
+$responsive-footer-height: 0.625rem !default;
+// scss-docs-end footer-variables
+
+
+
+
+// Scrollbar
+// 
+// scss-docs-start scrollbar-variables
+$scrollbar-bg: var(--#{$prefix}scrollbar-bg) !default;
+$simplebar-bg: var(--#{$prefix}simplebar-bg) !default;
+// scss-docs-end scrollbar-variables
+
+
+
+
+// code 
+
+$code-color: #e83e8c;
+
+// Nav pills
+
+$nav-pills-link-active-bg: #0275d8 !default;
+
+// Mark
+
+$mark-bg: #fcf8e3 !default;
+
+//thumbnail
+
+$thumbnail-padding: 0.5rem !default;

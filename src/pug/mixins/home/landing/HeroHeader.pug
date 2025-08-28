@@ -1,19 +1,12 @@
 append variables 
   -
-    var gradient={
-      "className":" bottom-0",
-
-      attrs:{
-        style:'background-image:linear-gradient(90deg, #FFFFFF -11.17%, #FFFFFF 110.39%);' 
-      }
-    }
     var background={
         "image":`${CWD}assets/img/header_bg.svg`,
         "className": 'bg-header'
     }
 
 mixin HeroHeader
-  +Section(gradient,"container-fluid ").position-relative.py-0.overflow-hidden
+  +Section('container-fluid').position-relative.py-0.overflow-hidden
     +Background(background)
       .container.overflow-hidden.text-center.z-index-1.banner-section.px-0.position-static
         img.mb-6.mb-md-8.mb-lg-10.logo(src=`${CWD}assets/img/themewagon-logo.png`  alt="")
@@ -29,7 +22,7 @@ mixin HeroHeader
         p.fs-0.fs-md-1.fs-xl-2.text-white.mb-0.mb-4.mb-md-7.mb-lg-10.description Supercharge your project with intuitive 
           br.d-sm-none
           |  UX/cleaner code   
-        a.text-decoration(href="#!")
+        a.text-decoration(href="https://themewagon.com/themes/bundle-v2/")
           button.btn.btn-success.px-6.py-2.px-md-13.py-md-4 Purchase now 
     .position-absolute.bottom-0.start-0.end-0.z-n1
       img.img-fluid.object-fit-cover(src=`${CWD}assets/img/shape.svg`, alt="")

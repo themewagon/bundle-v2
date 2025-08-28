@@ -112,47 +112,6 @@ const getOffset = el => {
   return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
 };
 
-const isScrolledIntoView = (el) => {
-  let top = el.offsetTop;
-  let left = el.offsetLeft;
-  const width = el.offsetWidth;
-  const height = el.offsetHeight;
-
-  while (el.offsetParent) {
-    // eslint-disable-next-line no-param-reassign
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-
-  return {
-    all:
-      top >= window.pageYOffset &&
-      left >= window.pageXOffset &&
-      top + height <= window.pageYOffset + window.innerHeight &&
-      left + width <= window.pageXOffset + window.innerWidth,
-    partial:
-      top < window.pageYOffset + window.innerHeight &&
-      left < window.pageXOffset + window.innerWidth &&
-      top + height > window.pageYOffset &&
-      left + width > window.pageXOffset,
-  };
-};
-const isElementIntoView = (el) => {
-
-  const position = el.getBoundingClientRect();
-  // checking whether fully visible
-  if (position.top >= 0 && position.bottom <= window.innerHeight) {
-    return true;
-  }
-
-  // checking for partial visibility
-  if (position.top < window.innerHeight && position.bottom >= 0) {
-    return true;
-  }
-  return null;
-};
-
 const getBreakpoint = el => {
   const classes = el && el.classList.value;
   let breakpoint;
@@ -238,7 +197,6 @@ const utils = {
   getColors,
   getGrays,
   getOffset,
-  isScrolledIntoView,
   getBreakpoint,
   setCookie,
   getCookie,
@@ -248,7 +206,6 @@ const utils = {
   getDates,
   getRandomNumber,
   removeClass,
-  isElementIntoView,
   getCurrentScreenBreakpoint,
   isRTL
 };

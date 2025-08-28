@@ -60,7 +60,6 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.11.3",
@@ -68,8 +67,6 @@
     "gulp-html": "^4.0.0",
     "imagesloaded": "^5.0.0",
     "is_js": "^0.9.0",
-    "isotope-layout": "^3.0.6",
-    "isotope-packery": "^2.0.1",
     "simple-git": "^3.27.0"
   },
   "browserslist": [

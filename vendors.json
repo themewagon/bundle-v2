@@ -7,10 +7,6 @@
     "src": "is.min.js",
     "dest": "is"
   },
-  "@fortawesome/fontawesome-free": {
-    "src": "js/all.min.js",
-    "dest": "fontawesome"
-  },
   "@popperjs/core": {
     "src": ["dist/umd/popper.min.js", "dist/umd/popper.min.js.map"],
     "dest": "@popperjs"
@@ -18,13 +14,5 @@
   "imagesloaded":{
     "src": ["imagesloaded.pkgd.js"],
     "dest": "imagesloaded"
-  },
-  "isotope-layout": {
-    "src": "dist/isotope.pkgd.min.js",
-    "dest": "isotope-layout"
-  },
-  "isotope-packery": {
-    "src": "packery-mode.pkgd.min.js",
-    "dest": "isotope-packery"
   }
 }

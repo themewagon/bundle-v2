@@ -6,28 +6,32 @@ append variables
     }
 
 mixin HeroHeader
-  +Section('container-fluid').position-relative.py-0.overflow-hidden
-    +Background(background)
+  +Section('container-fluid').position-relative.py-0.overflow-hidden.bg-primary.z-2
+    +Background(background).w-100
       .container.overflow-hidden.text-center.z-index-1.banner-section.px-0.position-static
-        img.mb-6.mb-md-8.mb-lg-10.logo(src=`${CWD}assets/img/themewagon-logo.png`  alt="")
-        .d-flex.align-items-center.align-items-sm-start.justify-content-center.gap-2.gap-md-4
-          h1.text-white.count.mb-0.font-bebas.font-normal 22
-          div
-            h3.text-success.font-bebas.text-uppercase.title.fw-normal.mb-0.text-nowrap
-              | HTML5 
-              span.text-white &amp; 
-              | React
-              br 
-            h2.text-white.template.fw-normal.font-bebas.mb-0 Templates
-        p.fs-0.fs-md-1.fs-xl-2.text-white.mb-0.mb-4.mb-md-7.mb-lg-10.description Supercharge your project with intuitive 
-          br.d-sm-none
-          |  UX/cleaner code   
-        a.text-decoration(href="https://themewagon.com/themes/bundle-v2/")
+        img.mb-4.mb-md-5.mb-lg-15.logo.object-fit-contain(src=`${CWD}assets/img/themewagon-logo.png`  alt="")
+        .text-container.mb-5.mb-md-15.mb-lg-16
+          img.img-fluid.text-image(src=`${CWD}assets/img/text.svg` alt="text")
+          p.text-white.description.fw-medium.lh-1.mb-0 Supercharge your project with intuitive UX/cleaner code 
+        ul.list-no-disc.mb-7.mb-md-8.mb-lg-9.fs--1.fs-md-0.fs-xl-1.d-flex.align-items-center.gap-sm.gap-md-5.gap-xl-16.justify-content-center.text-white.flex-column.flex-md-row
+          li.d-flex.align-items-center 
+            .list-bullet 
+            p.mb-0
+              span.fw-semi-bold Unlimited Use 
+              s  $1828
+              span.text-success.fw-bold  $249 
+          li.d-flex.align-items-center 
+            .list-bullet 
+            p.mb-0 
+              span.fw-semi-bold Standard Plus 
+              s  $1148
+              span.text-success.fw-bold  $139 
+        a.text-decoration(href="https://themewagon.com/themes/bundle-v2/" target="_blank")
           button.btn.btn-success.px-6.py-2.px-md-13.py-md-4 Purchase now 
-    .position-absolute.bottom-0.start-0.end-0.z-n1
-      img.img-fluid.object-fit-cover(src=`${CWD}assets/img/shape.svg`, alt="")
-    .position-absolute.start-0.end-0.wave
-      img.img-fluid.object-fit-cover(src=`${CWD}assets/img/wave.svg`, alt="")
+    .position-absolute.bottom-0.start-0.end-0.z-n1.min-w-100
+      img.img-fluid.object-fit-cover.w-100(src=`${CWD}assets/img/shape.svg`, alt="")
+    .position-absolute.start-0.end-0.wave.w-100.z-1
+      img.img-fluid.object-fit-cover.w-100(src=`${CWD}assets/img/wave.svg`, alt="")
 
 
 

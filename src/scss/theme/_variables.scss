@@ -42,15 +42,17 @@ $spacers: (
   4: $spacer * 1.125, //18px
   5: $spacer * 1.375, //22
   6: $spacer * 2.875, //46
-  7: $spacer * 3,
-  8: $spacer * 3.5,
-  9: $spacer * 4,
-  10: $spacer * 4.5,
-  11: $spacer * 5,
-  12: $spacer * 6,
+  7: $spacer * 3, // 48px
+  8: $spacer * 3.5, // 56px
+  9: $spacer * 4, // 64
+  10: $spacer * 4.5, // 72
+  11: $spacer * 5, // 80
+  12: $spacer * 6, //96
   13: $spacer * 3.188, //51
   14: $spacer * 9.53125,
-  15: $spacer * 1.5
+  15: $spacer * 1.5,
+  16: $spacer * 2.5,
+  sm: $spacer * 0.325
 ) !default;
 // scss-docs-end spacer-variables-maps
 
@@ -180,7 +182,7 @@ $font-size-base: 1rem !default;
 $font-sizes: () !default;
 $font-sizes: map-merge((
   '-2': math.div(1, math.pow($type-scale, 2)) * $font-size-base,
-  '-1': math.div(1, $type-scale) * $font-size-base,
+  '-1': 0.875 * $font-size-base,
   0: $font-size-base, // 16px
   1: pow($type-scale, 1) * $font-size-base, // 24px approx
   2: pow($type-scale, 2) * $font-size-base, // 36 px

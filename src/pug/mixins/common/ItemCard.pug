@@ -1,7 +1,11 @@
 mixin ItemCard(config)
   a(href=config.link target="_blank").text-decoration
     .card.h-100.card-showcase
-      img.card-img-top(src=`${CWD}assets/img/thumbnail/${config.thumb}` alt="thumb-img")
+      .position-relative
+        img.card-img-top(src=`${CWD}assets/img/thumbnail/${config.thumb}` alt="thumb-img")
+        if config.isGif 
+          .position-absolute.z-1.top-0.start-0 
+            img.img-fluid.bs-logo(src=`${CWD}assets/img/bs_bg.png`, alt="")
       .card-body
         .row.justify-content-between.g-0.gap-3.gap-lg-15.h-100.flex-column.flex-lg-row
           .col
